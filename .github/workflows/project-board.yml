@@ -12,10 +12,11 @@ permissions:
 
 jobs:
   sync-project:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - name: Move linked issues on the Project board
-        uses: actions/github-script@v7
+        uses: actions/github-script@v7          
         env:
           PROJECT_NODE_ID: ${{ vars.PROJECT_NODE_ID }}
           STATUS_FIELD_ID: ${{ vars.STATUS_FIELD_ID }}
@@ -23,6 +24,7 @@ jobs:
           IN_REVIEW_ID: ${{ vars.STATUS_IN_REVIEW_OPTION_ID }}
           DONE_ID: ${{ vars.STATUS_DONE_OPTION_ID }}
         with:
+          github-token: ${{ secrets.PROJECTS_PAT }}
           script: |
             const pr = context.payload.pull_request;
             const owner = context.repo.owner;
