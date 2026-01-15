@@ -89,12 +89,23 @@ Planned / configured automation (added in later sections):
 
 --- 
 
-## 5. Metrics
-We track lightweight collaboration metrics to reflect on developer efficiency and team workflow:
-- Time from Issue creation → PR merged
-- Number of PRs merged per week
-- Metrics table with sample Issues and PRs
-- A scheduled workflow that outputs a weekly summary in GitHub Actions logs
+We track lightweight collaboration metrics to reflect on workflow quality:
+
+- Lead time: Issue created → PR merged
+- Throughput: PRs merged per week (approx.)
+
+### Metrics table 
+
+| Item | Issue | Issue created (UTC) | PR | PR merged  | Lead time |
+|------|-------|----------------------|----|----------------|----------|
+| Issue templates | # | <YYYY-MM-DD HH:MM> | #< | <YYYY-MM-DD HH:MM> | <e.g., 2h 15m> |
+| CODEOWNERS + PR template | # | <YYYY-MM-DD HH:MM> | #12 | <YYYY-MM-DD HH:MM> | <e.g., 1h 05m> |
+| Labeler automation | # | <YYYY-MM-DD HH:MM> | # | <YYYY-MM-DD HH:MM> | <e.g., 45m> |
+
+Notes:
+- Times are taken from GitHub Issue/PR timestamps.
+- The goal is not perfect analytics, but an explicit reflection on whether the workflow reduces friction and supports collaboration.
+
 
 ---
 
