@@ -22,8 +22,9 @@ jobs:
           echo "Time window: last 7 days"
           echo ""
 
-          echo "Merged PRs (last 7 days):"
-          gh pr list --state merged --search "merged:>=-7d" --json number,title,mergedAt --jq '.[] | "- #\(.number) \(.title) (merged: \(.mergedAt))"'
+          SINCE_DATE=$(date -u -d "7 days ago" +%F)
+          echo "Merged PRs since ${SINCE_DATE}:"
+          gh pr list --state merged --search "merged:>=${SINCE_DATE}" --json number,title,mergedAt --jq '.[] | "- #\(.number) \(.title) (merged: \(.mergedAt))"'
 
           echo ""
           echo "Open PRs:"
