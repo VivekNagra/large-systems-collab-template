@@ -14,6 +14,9 @@ jobs:
   summary:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout (for gh repo context)
+        uses: actions/checkout@v4
+
       - name: Summarize PR throughput (last 7 days)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,8 +27,19 @@ jobs:
 
           SINCE_DATE=$(date -u -d "7 days ago" +%F)
           echo "Merged PRs since ${SINCE_DATE}:"
-          gh pr list --state merged --search "merged:>=${SINCE_DATE}" --json number,title,mergedAt --jq '.[] | "- #\(.number) \(.title) (merged: \(.mergedAt))"'
+
+          gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --state merged \
+            --search "merged:>=${SINCE_DATE}" \
+            --json number,title,mergedAt \
+            --jq '.[] | "- #\(.number) \(.title) (merged: \(.mergedAt))"'
 
           echo ""
           echo "Open PRs:"
-          gh pr list --state open --json number,title,createdAt --jq '.[] | "- #\(.number) \(.title) (opened: \(.createdAt))"'
+
+          gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --state open \
+            --json number,title,createdAt \
+            --jq '.[] | "- #\(.number) \(.title) (opened: \(.createdAt))"'
