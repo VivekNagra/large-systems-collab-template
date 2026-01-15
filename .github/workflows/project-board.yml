@@ -28,8 +28,8 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
-            // Decide target status based on PR event
-            let targetOptionId = process.env.IN_PROGRESS_ID;
+            // Decide target status based on PR event; honor draft flag for opened/reopened
+            let targetOptionId = pr.draft ? process.env.IN_PROGRESS_ID : process.env.IN_REVIEW_ID;
 
             if (context.payload.action === "ready_for_review") {
               targetOptionId = process.env.IN_REVIEW_ID;
@@ -81,23 +81,45 @@ jobs:
 
             async function findItemId(issueId) {
               const findQuery = `
-                query($projectId: ID!) {
+                query($projectId: ID!, $after: String) {
                   node(id: $projectId) {
                     ... on ProjectV2 {
-                      items(first: 100) {
+                      items(first: 100, after: $after) {
                         nodes {
                           id
                           content { ... on Issue { id } }
+                        }
+                        pageInfo {
+                          hasNextPage
+                          endCursor
                         }
                       }
                     }
                   }
                 }
               `;
-              const res = await github.graphql(findQuery, { projectId: process.env.PROJECT_NODE_ID });
-              const items = res.node.items.nodes;
-              const existing = items.find(n => n.content && n.content.id === issueId);
-              return existing ? existing.id : null;
+              let cursor = null;
+
+              do {
+                const res = await github.graphql(findQuery, {
+                  projectId: process.env.PROJECT_NODE_ID,
+                  after: cursor
+                });
+
+                const items = res.node?.items?.nodes || [];
+                const existing = items.find(n => n.content && n.content.id === issueId);
+                if (existing) {
+                  return existing.id;
+                }
+
+                const pageInfo = res.node?.items?.pageInfo;
+                cursor = pageInfo?.endCursor || null;
+                if (!pageInfo?.hasNextPage) {
+                  break;
+                }
+              } while (cursor);
+
+              return null;
             }
 
             async function setStatus(itemId, optionId) {
