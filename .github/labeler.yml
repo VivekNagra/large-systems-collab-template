@@ -1,28 +1,35 @@
 "type:docs":
-  - any:
-      - "docs/**"
-      - "**/*.md"
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**"
+          - "**/*.md"
 
 "area:docs":
-  - any:
-      - "docs/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**"
 
 "type:automation":
-  - any:
-      - ".github/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
 
 "area:github":
-  - any:
-      - ".github/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
 
 "area:devcontainer":
-  - any:
-      - ".devcontainer/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".devcontainer/**"
 
 "area:api":
-  - any:
-      - "src/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/**"
 
 "area:tests":
-  - any:
-      - "tests/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tests/**"
