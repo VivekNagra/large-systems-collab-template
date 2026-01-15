@@ -5,6 +5,10 @@ The goal is to demonstrate a modern collaboration setup using GitHub: **Issues +
 
 > I worked alone, so I used a secondary GitHub account to demonstrate “real” PR approvals and CODEOWNER review.
 
+Link to project board: https://github.com/users/VivekNagra/projects/3
+
+###
+
 ---
 
 ## 1. About the template
@@ -131,14 +135,14 @@ The table below tracks the lifecycle of each task from Issue creation to PR merg
 
 | Item | Issue | Issue Created (UTC) | PR | PR Merged (UTC) | Lead Time |
 | :--- | :---: | :--- | :---: | :--- | :--- |
-| Issue templates | #<ID> | <YYYY-MM-DD HH:MM> | #11 | 2026-01-15T00:02:21Z | <calc> |
-| CODEOWNERS + PR template | #<ID> | <YYYY-MM-DD HH:MM> | #12 | 2026-01-15T00:16:49Z | <calc> |
-| PR labeler workflow | #<ID> | <YYYY-MM-DD HH:MM> | #13 | 2026-01-15T00:27:38Z | <calc> |
-| Labeler config fix (v5) | #<ID> | <YYYY-MM-DD HH:MM> | #15 | 2026-01-15T01:12:29Z | <calc> |
-| CI workflow | #<ID> | <YYYY-MM-DD HH:MM> | #17 | 2026-01-15T01:20:05Z | <calc> |
-| Metrics table + workflow | #<ID> | <YYYY-MM-DD HH:MM> | #19 | 2026-01-15T01:44:01Z | <calc> |
-| Metrics fixes | #<ID> | <YYYY-MM-DD HH:MM> | #21 | 2026-01-15T01:57:56Z | <calc> |
-| Project board automation | #<ID> | <YYYY-MM-DD HH:MM> | #22 | 2026-01-15T02:45:31Z | <calc> |
+| Issue templates | # 3 |  | #11 | 2026-01-15T00:02:21Z | <calc> |
+| CODEOWNERS + PR template | # 12 |  | #12 | 2026-01-15T00:16:49Z | <calc> |
+| PR labeler workflow | #13 |  | #13 | 2026-01-15T00:27:38Z | <calc> |
+| Labeler config fix (v5) | #15 |  | #15 | 2026-01-15T01:12:29Z | <calc> |
+| CI workflow | #17  |  |  | 2026-01-15T01:20:05Z | <calc> |
+| Metrics table + workflow | #<ID> |  | #19 | 2026-01-15T01:44:01Z | <calc> |
+| Metrics fixes | #18 |  | #21 | 2026-01-15T01:57:56Z | <calc> |
+| Project board automation | #26 |  | #22 | 2026-01-15T02:45:31Z | <calc> |
 
 * **Lead Time:** The duration from Issue creation to PR merge.
 * **Throughput:** Number of PRs merged per week (tracked via the Metrics Summary workflow).
