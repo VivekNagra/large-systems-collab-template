@@ -124,3 +124,4 @@ Once the repository is configured as a Template Repository (GitHub Settings → 
     - Repository name and description
     - CODEOWNERS 
     - Project board reuse or create a new one per project
+Automation proof line.
