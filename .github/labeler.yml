@@ -1,0 +1,28 @@
+"type:docs":
+  - any:
+      - "docs/**"
+      - "**/*.md"
+
+"area:docs":
+  - any:
+      - "docs/**"
+
+"type:automation":
+  - any:
+      - ".github/**"
+
+"area:github":
+  - any:
+      - ".github/**"
+
+"area:devcontainer":
+  - any:
+      - ".devcontainer/**"
+
+"area:api":
+  - any:
+      - "src/**"
+
+"area:tests":
+  - any:
+      - "tests/**"
